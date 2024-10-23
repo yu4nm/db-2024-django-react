@@ -30,8 +30,8 @@ CREATE TABLE platillo(
 );
 
 --- Bebidas Table
-CREATE TABLE platillo(
-  idPlatillo INTEGER PRIMARY KEY,
+CREATE TABLE bebida(
+  idBebida INTEGER PRIMARY KEY,
   nombre VARCHAR(45),
   importe DECIMAL(10,2)
 );

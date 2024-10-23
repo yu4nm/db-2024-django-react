@@ -29,7 +29,7 @@ docker build -t japeto/facturion .
 ### 4. Run server with postgres
 
 ```
-docker run --name facturion -p 5432:5432 -e POSTGRES_PASSWORD=aP4sw0rd japeto/facturion
+docker run --name facturion -p 0.0.0.0:5432:5432 -e POSTGRES_PASSWORD=aP4sw0rd japeto/facturion
 ```
 
 
