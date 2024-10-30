@@ -1,61 +1,53 @@
 -- #######################################################
--- https://codeshare.io/g8pQAV
--- Database Course
--- Univalle 23-10-2024
+-- file:schema.sql
+-- Database Course 2024
+-- Univalle
 -- @JAPeTo
 -- #######################################################
 
---- Client Table
-CREATE TABLE cliente(
-  idCliente INTEGER PRIMARY KEY,
-  nombre VARCHAR(45),
-  apellido VARCHAR(45),
-  observaciones TEXT 
+\c pos_course
+
+-- Customer table
+CREATE TABLE customer (
+    customer_id SERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    phone VARCHAR(15),
+    address TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
---- Mesero Table
-CREATE TABLE mesero(
-  idMesero INTEGER,
-  nombre VARCHAR(45),
-  apellido VARCHAR(45),
-  observaciones TEXT,
-  PRIMARY KEY(idMesero)
+-- Manufacturer table
+CREATE TABLE manufacturer (
+    manufacturer_id SERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    contact_info TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
---- Platillo Table
-CREATE TABLE platillo(
-  idPlatillo INTEGER PRIMARY KEY,
-  nombre VARCHAR(45),
-  importe DECIMAL(10,2)
+-- Product table
+CREATE TABLE product (
+    product_id SERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    description TEXT,
+    price DECIMAL(10, 2) NOT NULL,
+    manufacturer_id INT REFERENCES manufacturer(manufacturer_id),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
---- Bebidas Table
-CREATE TABLE bebida(
-  idBebida INTEGER PRIMARY KEY,
-  nombre VARCHAR(45),
-  importe DECIMAL(10,2)
-);
---- Mesa Table
-CREATE TABLE mesa(
-  idMesa INTEGER PRIMARY KEY,
-  numComensales INTEGER,
-  ubicacion VARCHAR(45)
+-- Order table
+CREATE TABLE "order" (
+    order_id SERIAL PRIMARY KEY,
+    customer_id INT REFERENCES customer(customer_id),
+    order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    total DECIMAL(10, 2) NOT NULL
 );
 
---- Factura Table
-CREATE TABLE factura(
-  idFactura INTEGER,
-	idCliente INTEGER NOT NULL DEFAULT 1,
-	idMesero INTEGER NOT NULL,
-	idMesa INTEGER NOT NULL,
-	idBebida INTEGER NOT NULL,
-	idPlatillo INTEGER,
-  fechaFactura DATE,
-  PRIMARY KEY(idFactura),
-  FOREIGN KEY (idCliente) REFERENCES cliente(idCliente) ON DELETE SET DEFAULT ON UPDATE NO ACTION,
-  FOREIGN KEY (idMesero) REFERENCES mesero(idMesero) ON DELETE RESTRICT ON UPDATE NO ACTION,
-  FOREIGN KEY (idMesa) REFERENCES mesa(idMesa) ON DELETE RESTRICT ON UPDATE NO ACTION,
-  FOREIGN KEY (idPlatillo) REFERENCES platillo(idPlatillo) ON DELETE SET NULL ON UPDATE NO ACTION,
-  FOREIGN KEY (idBebida) REFERENCES bebida(idBebida) ON DELETE CASCADE ON UPDATE CASCADE
+-- Order items table
+CREATE TABLE order_items (
+    order_item_id SERIAL PRIMARY KEY,
+    order_id INT REFERENCES "order"(order_id),
+    product_id INT REFERENCES product(product_id),
+    quantity INT NOT NULL,
+    price DECIMAL(10, 2) NOT NULL
 );
-
