@@ -10,7 +10,7 @@ class ListCreateClients(generics.ListAPIView):
   
   def post(self, request, *args, **kwargs):
     data= request.data
-    serr = CustomerSerializer(data)
+    serr = CustomerSerializer(data=data)
     if (serr.is_valid()):
       serr.save()
       return Response(serr.validated_data, status=status.HTTP_200_OK)  
