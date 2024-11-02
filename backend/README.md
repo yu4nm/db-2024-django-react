@@ -41,6 +41,26 @@ pip install -r requirements.txt
 
 ### 3. Configure database connection
 
+In the settings.py file, configure the database you want to use (SQLite is the default).
+
+```
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'database_name',
+        'USER': 'database_user',
+        'PASSWORD': 'database_password',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
+}
+```
+
+### 4. Run the development server
+
+```
+python manage.py runserver
+```
 
 
 
