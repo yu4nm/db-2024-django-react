@@ -5,6 +5,8 @@
 -- @JAPeTo
 -- #######################################################
 
+\c pos_homework
+
 -- Insertar registros en customer
 INSERT INTO customer (cId, name, address, contact, creditLimit) VALUES
 (1, 'Carlos', 'Avenida Siempre Viva 742', '320-1234567', 6000),

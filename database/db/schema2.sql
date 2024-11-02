@@ -28,10 +28,10 @@ CREATE TABLE product(
   color VARCHAR(45),
   manufacturedDate DATE,
   mId INTEGER,
-  FOREIGN KEY (mId) REFERENCES manufacture(mId)
+  FOREIGN KEY (mId) REFERENCES manufacturer(mId)
 );
 
-CREATE TABLE order(
+CREATE TABLE "order"(
   oId INTEGER PRIMARY KEY,
   cId INTEGER,
   reference INTEGER,
@@ -39,12 +39,12 @@ CREATE TABLE order(
 );
 
 CREATE TABLE orderItems(
-  oId INTEGER PRIMARY KEY,
+  oId INTEGER,
   pId INTEGER,
   qty INTEGER,
-  warranty# INTEGER,
+  warranty INTEGER,
   unitPrice INTEGER,
   PRIMARY KEY (oId, pId),
-  FOREIGN KEY (oId) REFERENCES order(oId),
-  FOREIGN KEY (pId) REFERENCES producto(pId)
+  FOREIGN KEY (oId) REFERENCES "order"(oId),
+  FOREIGN KEY (pId) REFERENCES product(pId)
 );

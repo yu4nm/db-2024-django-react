@@ -5,6 +5,8 @@
 -- @JAPeTo
 -- #######################################################
 
+\c pos_course
+
 -- Insert records into the manufacturer table
 INSERT INTO manufacturer (name, contact_info) VALUES
 ('Acme Corp', '123 Acme St, Springfield, IL, 12345'),
