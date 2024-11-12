@@ -1,19 +1,23 @@
-# Mobile Component
+# Frontend Component
 
 ## Summary
 
 Under construction
 
-## Get started
+## Steps for build and run the frontend
 
-1. Install dependencies
+### 1. Install dependencies
 
-   ```bash
-   npm install
-   ```
+Inside mobile folder, install dependencies
 
-2. Start the app
+```
+npm install
+```
 
-   ```bash
-    npx expo start
-   ```
+### 2. Run frontend app
+
+Inside mobile folder, run app
+
+```
+npm start
+```
