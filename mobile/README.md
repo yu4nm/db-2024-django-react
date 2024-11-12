@@ -1,10 +1,10 @@
-# Frontend Component
+# Mobile Component
 
 ## Summary
 
 Under construction
 
-## Steps for build and run the frontend
+## Steps for build and run the mobile
 
 ### 1. Install dependencies
 
